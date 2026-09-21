@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>居住支援サポーター募集｜あんどの里山</title>
+<!--
+  居住支援サポーター募集LP（たたき台・世界観：みんなの里山／図解）
+  ・動物は絵文字で仮置き。本番はイラストに差し替え可能（各所 class="animal" を参照）。
+  ・応募ボタンのリンクは「配布用（回答用）フォームのURL」に差し替えてください。
+    現在は仮リンク（#apply）です。※編集用URLは公開しないこと。
+-->
+<style>
+  :root{
+    --cream:#fbf7ef;      /* 背景（生成り） */
+    --ink:#3b3a33;        /* 文字 */
+    --sub:#6d6a5c;        /* 補足文字 */
+    --sky:#dceff6;        /* 空 */
+    --sky-deep:#6bb6d6;
+    --leaf:#7fb069;       /* 葉 */
+    --leaf-deep:#4f8a5b;
+    --water:#2e8b9e;      /* 水 */
+    --water-soft:#cfeae9;
+    --earth:#c9a678;      /* 土 */
+    --earth-deep:#8c6a4e;
+    --sun:#e8a33d;        /* 陽だまり（アクセント） */
+    --card:#ffffff;
+    --radius:22px;
+    --shadow:0 8px 24px rgba(90,70,40,.10);
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;color:var(--ink);background:var(--cream);
+    font-family:"Hiragino Maru Gothic ProN","Yu Gothic",YuGothic,Meiryo,system-ui,sans-serif;
+    line-height:1.85;letter-spacing:.02em;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+  h2{font-size:clamp(1.4rem,3.4vw,2.1rem);margin:0 0 .4em;line-height:1.4;}
+  h3{font-size:1.15rem;margin:0 0 .3em;}
+  p{margin:.4em 0;}
+  .lead{color:var(--sub);}
+  .animal{font-style:normal;}
+
+  /* ===== ヘッダー ===== */
+  .nav{position:sticky;top:0;z-index:20;background:rgba(251,247,239,.9);
+    backdrop-filter:blur(6px);border-bottom:1px solid #eee3cf;}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{font-weight:800;letter-spacing:.05em;}
+  .brand small{display:block;font-weight:600;color:var(--sub);font-size:.7rem;letter-spacing:.15em;}
+  .nav a.cta{background:var(--sun);color:#fff;text-decoration:none;padding:.5em 1.1em;
+    border-radius:999px;font-weight:700;box-shadow:var(--shadow);white-space:nowrap;}
+
+  /* ===== ヒーロー ===== */
+  .hero{position:relative;overflow:hidden;
+    background:linear-gradient(180deg,var(--sky) 0%,#eaf5e4 55%,var(--water-soft) 100%);}
+  .hero .wrap{padding:64px 20px 80px;text-align:center;}
+  .hero h1{font-size:clamp(1.8rem,5.5vw,3.2rem);line-height:1.35;margin:.2em 0 .3em;}
+  .hero h1 .em{color:var(--leaf-deep);}
+  .hero .sub{font-size:clamp(1rem,2.4vw,1.25rem);color:var(--sub);}
+  .hero .scene{font-size:clamp(2rem,7vw,3.4rem);margin:.5em 0;letter-spacing:.15em;}
+  .hero .btns{margin-top:1.4em;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn{display:inline-block;text-decoration:none;font-weight:700;border-radius:999px;
+    padding:.85em 1.8em;box-shadow:var(--shadow);transition:transform .12s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--sun);color:#fff;}
+  .btn-ghost{background:#fff;color:var(--leaf-deep);border:2px solid var(--leaf);}
+  /* イラスト共通 */
+  .illust{display:block;width:100%;max-width:380px;margin:1.4em auto 0;border-radius:20px;
+    border:5px solid #fff;box-shadow:var(--shadow);}
+  .illust.wide{max-width:480px;}
+  .hero-illust{display:block;width:100%;max-width:400px;margin:1.4em auto 0;border-radius:24px;
+    border:6px solid #fff;box-shadow:0 12px 30px rgba(90,70,40,.18);}
+  .hills{height:60px;background:
+    radial-gradient(120% 100% at 20% 0,var(--leaf) 40%,transparent 41%),
+    radial-gradient(120% 100% at 70% 0,var(--leaf-deep) 40%,transparent 41%);
+    background-color:var(--water-soft);}
+
+  /* ===== 共通セクション ===== */
+  section{padding:64px 0;}
+  .section-tag{display:inline-block;background:#fff;color:var(--leaf-deep);
+    border:1px solid var(--leaf);border-radius:999px;padding:.2em 1em;font-size:.8rem;
+    font-weight:700;margin-bottom:.8em;}
+  .center{text-align:center;}
+
+  /* ===== 課題（カメ） ===== */
+  .problem{background:var(--cream);}
+  .problem .turtles{font-size:2.4rem;letter-spacing:.2em;margin:.3em 0;}
+  .quote{max-width:640px;margin:1.2em auto 0;background:#fff;border-radius:var(--radius);
+    padding:22px 26px;box-shadow:var(--shadow);color:var(--sub);}
+
+  /* ===== 里山の三層 ===== */
+  .satoyama{background:linear-gradient(180deg,var(--sky) 0%,#eef7e6 45%,var(--water-soft) 100%);}
+  .layers{max-width:760px;margin:1.5em auto 0;border-radius:var(--radius);overflow:hidden;
+    box-shadow:var(--shadow);border:3px solid #fff;}
+  .layer{display:flex;align-items:center;gap:16px;padding:20px 22px;}
+  .layer .ico{font-size:2rem;min-width:2.4em;text-align:center;}
+  .layer .txt h3{margin:0;}
+  .layer .txt p{margin:0;color:var(--sub);font-size:.95rem;}
+  .layer.sky{background:var(--sky);}
+  .layer.land{background:#e9f3dc;}
+  .layer.water{background:var(--water-soft);}
+
+  /* ===== 関係図（ハブ＆スポーク） ===== */
+  .network{background:var(--cream);}
+  .hub-wrap{max-width:900px;margin:1.6em auto 0;}
+  .hub-center{max-width:420px;margin:0 auto 6px;background:var(--leaf-deep);color:#fff;
+    border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow);}
+  .hub-center .big{font-size:2.4rem;}
+  .hub-center h3{margin:.2em 0;color:#fff;}
+  .hub-center p{color:#e8f3e6;font-size:.9rem;margin:0;}
+  .spokes{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:14px;}
+  .node{background:#fff;border-radius:18px;padding:16px;text-align:center;box-shadow:var(--shadow);
+    border-top:5px solid var(--leaf);}
+  .node .big{font-size:2rem;}
+  .icon-img{width:84px;height:84px;object-fit:cover;border-radius:50%;background:#fff;
+    box-shadow:0 3px 10px rgba(90,70,40,.14);}
+  .hub-center .icon-img{width:110px;height:110px;border:4px solid rgba(255,255,255,.7);}
+  .char-img{width:96px;height:96px;object-fit:cover;border-radius:50%;display:block;margin:0 auto .3em;
+    background:#fff;box-shadow:0 3px 10px rgba(90,70,40,.14);}
+  .who-img{width:54px;height:54px;object-fit:cover;border-radius:50%;flex-shrink:0;
+    background:#fff;box-shadow:0 2px 7px rgba(90,70,40,.14);}
+  .node h4{margin:.25em 0 .1em;font-size:1rem;}
+  .node p{margin:0;color:var(--sub);font-size:.82rem;}
+  .node.support{border-top-color:var(--sun);background:#fff8ec;}
+  .arrow-note{text-align:center;color:var(--sub);font-size:.85rem;margin-top:14px;}
+
+  /* ===== 役割（イモリ） ===== */
+  .role{background:linear-gradient(180deg,#fff8ec,var(--cream));}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:1.4em;}
+  .step{background:#fff;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);}
+  .step .n{display:inline-flex;width:2em;height:2em;align-items:center;justify-content:center;
+    background:var(--sun);color:#fff;border-radius:50%;font-weight:800;margin-bottom:.4em;}
+  .step .big{font-size:1.8rem;}
+
+  /* ===== 安心 ===== */
+  .safe{background:var(--cream);}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:1.4em;}
+  .card{background:#fff;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);}
+  .card .big{font-size:1.8rem;}
+  .card h3{color:var(--leaf-deep);}
+
+  /* ===== 待遇 ===== */
+  .terms{background:#eef7e6;}
+  .term-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:1.4em;}
+  .term{background:#fff;border-radius:var(--radius);padding:22px;text-align:center;box-shadow:var(--shadow);}
+  .term .num{font-size:2rem;font-weight:800;color:var(--sun);}
+  .term small{color:var(--sub);}
+
+  /* ===== ストーリー ===== */
+  .story{background:var(--cream);}
+  .story-box{max-width:720px;margin:1.4em auto 0;background:#fff;border-radius:var(--radius);
+    padding:28px;box-shadow:var(--shadow);}
+  .story-box .line{display:flex;gap:12px;margin:.6em 0;}
+  .story-box .line .who{font-size:1.6rem;min-width:1.6em;text-align:center;}
+
+  /* ===== FAQ ===== */
+  .faq{background:#eef7e6;}
+  details{background:#fff;border-radius:16px;padding:4px 20px;margin:12px 0;box-shadow:var(--shadow);}
+  summary{cursor:pointer;font-weight:700;padding:14px 0;list-style:none;}
+  summary::-webkit-details-marker{display:none;}
+  summary::before{content:"Q ";color:var(--sun);font-weight:800;}
+  details p{padding-bottom:14px;color:var(--sub);}
+
+  /* ===== CTA ===== */
+  .apply{background:linear-gradient(180deg,var(--water-soft),var(--leaf));color:#fff;text-align:center;}
+  .apply h2{color:#fff;}
+  .apply p{color:#f2fff2;}
+  .apply .btn-primary{font-size:1.15rem;padding:1em 2.4em;margin-top:.6em;}
+  .apply .scene{font-size:2.6rem;letter-spacing:.2em;margin:.3em 0;}
+
+  footer{background:var(--ink);color:#d9d6cc;text-align:center;padding:30px 20px;font-size:.85rem;}
+  footer a{color:#f0d9a8;}
+  .tagline{font-size:1rem;color:#f0d9a8;margin-bottom:.6em;}
+</style>
+</head>
+<body>
+
+<!-- ナビ -->
+<header class="nav">
+  <div class="wrap">
+    <div class="brand">あんどの里山<small>KYOJU SUPPORTER</small></div>
+    <a class="cta" href="#apply">サポーター募集中 →</a>
+  </div>
+</header>
+
+<!-- ヒーロー -->
+<section class="hero" style="padding:0;">
+  <div class="wrap">
+    <span class="section-tag">居住支援サポーター募集</span>
+    <h1>支えるのは、<span class="em">あんど</span>。<br>あなたは、となりで<span class="em">見守る</span>だけ。</h1>
+    <p class="sub">水も、陸も、空も。支え合って、この里山はできている。</p>
+    <img class="hero-illust" src="Image2.jpg" alt="里山の池に集まる、カエル・カメたち・イモリ・ウサギ・蝶・カラス">
+    <div class="btns">
+      <a class="btn btn-primary" href="#apply">応募してみる</a>
+      <a class="btn btn-ghost" href="#role">サポーターの役割を見る</a>
+    </div>
+  </div>
+</section>
+<div class="hills"></div>
+
+<!-- 課題：カメ -->
+<section class="problem">
+  <div class="wrap center">
+    <span class="section-tag">はじまりの、こまりごと</span>
+    <h2>甲羅にこもる、カメたちがいます。</h2>
+    <img class="illust" src="Image3.jpg" alt="夕暮れの池のほとりで、少し寂しげに佇む高齢のカメたち">
+    <p class="lead">年を重ね、体が思うように動かず、たよれる人も少なくなって——<br>「わが家（甲羅）」の中で、少しずつ孤立していく高齢の方や障害のある方。</p>
+    <div class="quote">「困っても、だれに言えばいいのか分からない」<br>「月に一度でも、顔を見て話せる人がいたら」<br><small>——池のほとりの、カメたちの声。</small></div>
+  </div>
+</section>
+
+<!-- 里山の三層 -->
+<section class="satoyama">
+  <div class="wrap center">
+    <span class="section-tag">みんなの里山</span>
+    <h2>ひとつの里山で、みんな支え合っている。</h2>
+    <p class="lead">空・陸・水。すみかは違っても、つながれば大きな安心になる。</p>
+    <img class="illust wide" src="Image4.jpg" alt="里山の三層：空にカラス、陸にウサギ、水辺にカエル・カメ・イモリ・蝶">
+    <div class="layers">
+      <div class="layer sky">
+        <div class="ico animal">🐦‍⬛</div>
+        <div class="txt"><h3>空のなかま</h3><p>カラス（オーナー）＝住まいという“止まり木”を用意してくれる頼れる存在</p></div>
+      </div>
+      <div class="layer land">
+        <div class="ico animal">🐰</div>
+        <div class="txt"><h3>陸のなかま</h3><p>ウサギ（不動産管理会社）＝安心して住める“すみか”を見つけてくる</p></div>
+      </div>
+      <div class="layer water">
+        <div class="ico animal">🐸 🐢 🦎 🦋</div>
+        <div class="txt"><h3>水辺のなかま</h3><p>カエル（あんど）＝みんなをつなぐ／カメ（入居者）＝暮らす人／イモリ（サポーター）＝そっと見守る／蝶（訪問看護）＝体の心配に寄り添う</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 関係図 -->
+<section class="network">
+  <div class="wrap center">
+    <span class="section-tag">しくみ図解</span>
+    <h2>ぜんぶ、あんど（カエル）が真ん中でつなぐ。</h2>
+    <p class="lead">だからサポーター（イモリ）は、ひとりで抱え込まなくていい。</p>
+    <div class="hub-wrap">
+      <div class="hub-center">
+        <img class="icon-img" src="ic01_frog.png" alt="カエル＝あんど居住支援部">
+        <h3>あんど 居住支援部</h3>
+        <p>全体をつなぐ司令塔（ハブ）。相談・差配・報告の窓口。</p>
+      </div>
+      <div class="arrow-note">▲ みんな、まずここへ相談 ▲</div>
+      <div class="spokes">
+        <div class="node support">
+          <img class="icon-img" src="ic03_newt.png" alt="イモリ＝サポーター">
+          <h4>イモリ＝サポーター</h4>
+          <p>月1回、カメのとなりで見守る。あなたの役割。</p>
+        </div>
+        <div class="node">
+          <img class="icon-img" src="ic02_turtle.png" alt="カメ＝入居者">
+          <h4>カメ＝入居者</h4>
+          <p>高齢・障害のある方。暮らしの主人公。</p>
+        </div>
+        <div class="node">
+          <img class="icon-img" src="ic04_rabbit.png" alt="ウサギ＝不動産管理会社">
+          <h4>ウサギ＝管理会社</h4>
+          <p>住むところを見つける。</p>
+        </div>
+        <div class="node">
+          <img class="icon-img" src="ic05_crow.png" alt="カラス＝物件オーナー">
+          <h4>カラス＝オーナー</h4>
+          <p>住まいを用意する頼れる長老。</p>
+        </div>
+        <div class="node">
+          <img class="icon-img" src="ic06_butterfly.png" alt="蝶＝訪問看護">
+          <h4>蝶＝訪問看護</h4>
+          <p>体の心配ごとに寄り添う。</p>
+        </div>
+      </div>
+      <p class="arrow-note">迷ったとき・気になることがあったら、イモリは自己判断せず、いつでもカエルに相談できます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 役割：イモリ -->
+<section class="role" id="role">
+  <div class="wrap">
+    <div class="center">
+      <span class="section-tag">サポーター（イモリ）の役割</span>
+      <h2>やることは、とてもシンプル。</h2>
+      <p class="lead">特別な資格はいりません。必要なのは、となりに座るやさしさだけ。</p>
+    </div>
+    <img class="illust" src="Image5.jpg" alt="イモリ（サポーター）がカメの家を訪ね、玄関先でやさしく話を聞く様子">
+    <div class="steps">
+      <div class="step"><div class="n">1</div><img class="char-img" src="ic03_newt.png" alt="イモリ（サポーター）"><h3>月に一度、会いにいく</h3><p>原則そこから。玄関先で「お変わりないですか」と声をかけます。</p></div>
+      <div class="step"><div class="n">2</div><img class="char-img" src="ic02_turtle.png" alt="カメ（入居者）"><h3>話を聞く・見守る</h3><p>体調や暮らしの様子を、雑談の中でそっと確認します。</p></div>
+      <div class="step"><div class="n">3</div><img class="char-img" src="ic03_newt.png" alt="イモリ（サポーター）"><h3>あんどへ報告</h3><p>スマホのフォームに記録。気になることは電話で一報。</p></div>
+      <div class="step"><div class="n">4</div><img class="char-img" src="ic01_frog.png" alt="カエル（あんど）"><h3>あとは、あんどが動く</h3><p>むずかしい判断や対応は、あんど（カエル）が引き受けます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 安心 -->
+<section class="safe">
+  <div class="wrap">
+    <div class="center">
+      <span class="section-tag">はじめてでも、安心</span>
+      <h2>ひとりで、がんばらせません。</h2>
+    </div>
+    <img class="illust" src="Image6.jpg" alt="カエル（あんど）が電話で報告を受け、窓の外には往診に向かう看護の蝶">
+    <div class="cards">
+      <div class="card"><img class="char-img" src="ic01_frog.png" alt="カエル（あんど）"><h3>いつでも相談できる</h3><p>電話・メール・チャットで、あんどにすぐ相談。テレビ電話で現場から相談も。</p></div>
+      <div class="card"><div class="big animal">📚</div><h3>無料の研修</h3><p>福祉・不動産・権利擁護などをオンラインで学べます。未経験でも大丈夫。</p></div>
+      <div class="card"><div class="big animal">🛡️</div><h3>ボランティア保険</h3><p>あんどが費用負担で加入。安心して活動できます。</p></div>
+      <div class="card"><div class="big animal">🙅</div><h3>自己判断しなくていい</h3><p>できないことは無理にしない。困ったら、まずあんどへ。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 待遇 -->
+<section class="terms">
+  <div class="wrap">
+    <div class="center">
+      <span class="section-tag">活動への謝礼</span>
+      <h2>“ありがとう”を、かたちに。</h2>
+    </div>
+    <div class="term-grid">
+      <div class="term"><div class="num">1,200円</div><small>1回あたりの謝礼（税込）</small></div>
+      <div class="term"><div class="num">実費</div><small>交通費を別途支給</small></div>
+      <div class="term"><div class="num">月1回〜</div><small>無理のないペースで</small></div>
+      <div class="term"><div class="num">0円</div><small>研修費（無料で学べる）</small></div>
+    </div>
+    <p class="center lead" style="margin-top:1em;">＊有償ボランティアとしての謝礼です。交流会で全国のサポーターとつながることもできます。</p>
+  </div>
+</section>
+
+<!-- ストーリー -->
+<section class="story">
+  <div class="wrap">
+    <div class="center">
+      <span class="section-tag">ある日の、里山</span>
+      <h2>イモリさんの、ちいさな一日。</h2>
+    </div>
+    <div class="story-box">
+      <div class="line"><img class="who-img" src="ic03_newt.png" alt="イモリ"><p>「こんにちは。今日はいい天気ですね」——月に一度、カメのおうちの玄関先へ。</p></div>
+      <div class="line"><img class="who-img" src="ic02_turtle.png" alt="カメ"><p>「あら、待ってたのよ。最近ね、少し眠れなくて……」ぽつり、ぽつりと話がこぼれる。</p></div>
+      <div class="line"><img class="who-img" src="ic03_newt.png" alt="イモリ"><p>（これは、あんどに伝えておこう）スマホのフォームにメモを残す。</p></div>
+      <div class="line"><img class="who-img" src="ic01_frog.png" alt="カエル"><p>「知らせてくれてありがとう。蝶（訪問看護）さんに相談してみるね」——あんどが動きだす。</p></div>
+      <div class="line"><img class="who-img" src="ic02_turtle.png" alt="カメ"><p>数日後、カメの顔が少しほころんだ。「見てもらえてる」——その安心が、里山にひろがる。</p></div>
+    </div>
+    <p class="center lead" style="margin-top:1em;">※これは世界観を伝えるための物語です。</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="center"><span class="section-tag">よくある質問</span><h2>気になること、お答えします。</h2></div>
+    <details><summary>資格や経験は必要ですか？</summary><p>いいえ、特別な資格は不要です。研修を無料で受けられますし、むずかしい判断はあんどが引き受けます。まずは「人と話すのが好き」という気持ちがあれば大丈夫です。</p></details>
+    <details><summary>どのくらいの負担になりますか？</summary><p>原則は月1回程度の見守りから。ご自身の生活に合わせて無理のないペースで活動できます。</p></details>
+    <details><summary>危ない目にあわないか心配です。</summary><p>ご自身の安全確保が最優先です。玄関先での対応が原則で、迷ったときはテレビ電話でその場から相談できます。ボランティア保険にも加入します。</p></details>
+    <details><summary>お金のやりとりはありますか？</summary><p>対象者との金銭・物品の授受は一切行いません。買い物代行などの費用は、すべてあんどを通じて精算します。</p></details>
+    <details><summary>どの地域で活動できますか？</summary><p>お住まいから無理なく通えるエリアで、対象者とマッチングします。詳しくは応募後にご相談ください。</p></details>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="apply" id="apply">
+  <div class="wrap">
+    <span class="section-tag" style="background:#fff;">いっしょに、里山のなかまへ</span>
+    <img class="illust" src="Image7.jpg" alt="こちらへ手を差し伸べるイモリと、金色の光のなかで微笑む池のなかまたち">
+    <h2>あなたの「となり」を、待っている人がいます。</h2>
+    <p>まずはお名前を登録するだけ。あんどからご案内します。</p>
+    <a class="btn btn-primary" href="https://docs.google.com/forms/d/1YWC_1MzcopEQ-bQDcw33IIZBGJJikml8nP5bX9kJpd0/viewform" target="_blank" rel="noopener">サポーターに応募する</a>
+    <p style="margin-top:1em;font-size:.85rem;">お問い合わせ：あんど総合窓口 <a href="tel:047-404-1960" style="color:#fff;font-weight:700;">047-404-1960</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="tagline">「あんどは人と人、人と家、人と未来を繋いでいきます。」</div>
+  <div>株式会社あんど（千葉県・神奈川県指定 居住支援法人）</div>
+  <div style="margin-top:.4em;">〒 千葉県船橋市湊町2丁目5-4 藤代ビル302 ／ <a href="https://and.care">and.care</a></div>
+</footer>
+
+</body>
+</html>
